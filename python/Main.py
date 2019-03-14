@@ -6,6 +6,7 @@ import re
 import time
 
 INPUT_FILE = "/data/1.txt"
+INPUT_FILE = "/data/enwiki/first_10G/AA/wiki_00"
 TEMP_DIR = "/data/tmp"
 
 word_pattern = re.compile(r"[a-zA-Z0-9]+")
@@ -32,7 +33,7 @@ def solve():
     # init tmp dict list, total 62 dicts
     tmp_dict_list = [dict() for _ in range(len(alpha_list))]
 
-    # step 1, read input file and split to 62 files, write (word, index, count=1)
+    # step 1, read input file and split to 62 files, write (word, index, count)
     with open(INPUT_FILE, "r") as input_file:
         index = 0
         line_index = 0
@@ -75,7 +76,7 @@ def solve():
             tmp = line.rstrip().split(",")
             word, index, count = tmp[0], int(tmp[1]), int(tmp[2])
             if word not in word_index_count_dict:
-                word_index_count_dict[word] = [index, count]  # {word: [index, count=1]}
+                word_index_count_dict[word] = [index, count]  # {word: [index, count]}
             else:
                 it = word_index_count_dict[word]  # {word: [index.min, count.sum]}
                 it[0] = min(it[0], index)
