@@ -6,7 +6,6 @@ import re
 import time
 
 INPUT_FILE = "/data/1.txt"
-INPUT_FILE = "/data/enwiki/first_10G/AA/wiki_00"
 TEMP_DIR = "/data/tmp"
 
 word_pattern = re.compile(r"[a-zA-Z0-9]+")
