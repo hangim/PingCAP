@@ -12,23 +12,23 @@
 
 1. 扫描文件，提取出所有单词
 
-  (line) --> flatmap --> (word)
+    (line) --> flatmap --> (word)
 
 2. 对所有单词，依次添加 index，记录出现位置, 初始化计数 count=1
 
-  (word) --> zipWithIndex --> (word, (index, count=1))
+    (word) --> zipWithIndex --> (word, (index, count=1))
 
 3. 进行 reduceByKey 操作，对于相同的 word，index 取最小值，count 累加
 
-  (word, (index, count=1)) --> reduceByKey --> (word, (index.min, count.sum))
+    (word, (index, count=1)) --> reduceByKey --> (word, (index.min, count.sum))
 
 4. 进行 filter, 取出 count == 1 的部分
 
-  (word, (index, count)) --> filter(where count==1) --> (word, index)
+    (word, (index, count)) --> filter(where count==1) --> (word, index)
 
 5. 根据 index 排序，取出第一个
 
-  (word, index) --> sort by index, take(1) --> answer word
+    (word, index) --> sort by index, take(1) --> answer word
 
 ### 实现思路（Python）
 
